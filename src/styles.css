@@ -152,7 +152,7 @@ body, html, #root {
     padding: 0;
 }
 
-.nav-links button {
+.nav-links :is(button, a) {
     background: transparent;
     border: 0;
     color: rgba(255, 255, 255, 0.8);
@@ -163,7 +163,7 @@ body, html, #root {
     transition: color 0.3s ease;
 }
 
-.nav-links button:hover {
+.nav-links :is(button, a):hover {
     color: #4fc3f7;
 }
 
@@ -1111,7 +1111,7 @@ button, input, select, textarea { font-family: inherit; }
 .navbar { z-index: 1100; }
 .loading-screen { z-index: 2000; }
 .section-page { top: var(--navbar-height); height: calc(100dvh - var(--navbar-height)); min-height: 0; }
-.nav-links button[aria-current="page"] { color: #4fc3f7; }
+.nav-links :is(button, a)[aria-current="page"] { color: #4fc3f7; }
 /* Mission: restrained NASA-era publication typography in the site's space palette. */
 #mission {
     --mission-orange: #ffa313;
@@ -1281,3 +1281,5 @@ button, input, select, textarea { font-family: inherit; }
     .loading-progress { animation: none; transform: scaleX(1); opacity: .65; }
     .loading-screen { transition: none; }
 }
+
+.nav-links a { text-decoration: none; display: inline-block; }

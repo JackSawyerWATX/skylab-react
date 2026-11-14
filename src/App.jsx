@@ -7,9 +7,10 @@ import Mission from './components/Mission'
 import Timeline from './components/Timeline'
 import Gallery from './components/Gallery'
 import { createAmbientAudio } from './ambientAudio'
+import { pages, pageFromPath, applyPageSeo } from './seo.mjs'
 
 export default function App(){
-  const [page, setPage] = useState('home') // home, mission, timeline, gallery
+  const [page, setPage] = useState(() => pageFromPath(window.location.pathname))
   const [isLoading, setIsLoading] = useState(true)
   const [isSceneReady, setIsSceneReady] = useState(false)
   const handleSceneReady = useCallback(() => setIsSceneReady(true), [])
@@ -62,7 +63,15 @@ export default function App(){
     }
   }
 
+  useEffect(() => {
+    const onPopState = () => setPage(pageFromPath(window.location.pathname))
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
+  }, [])
+  useEffect(() => { applyPageSeo(page) }, [page])
+
   function handleNavigate(target){
+    if (window.location.pathname !== pages[target].path) window.history.pushState({}, '', pages[target].path)
     setPage(target)
     window.scrollTo(0,0)
   }
@@ -105,9 +114,9 @@ export default function App(){
         )}
 
         {/* modal-like sections rendered conditionally */}
-        <Mission active={page === 'mission'} onClose={() => setPage('home')} />
-        <Timeline active={page === 'timeline'} onClose={() => setPage('home')} />
-        <Gallery active={page === 'gallery'} onClose={() => setPage('home')} />
+        <Mission active={page === 'mission'} onClose={() => handleNavigate('home')} />
+        <Timeline active={page === 'timeline'} onClose={() => handleNavigate('home')} />
+        <Gallery active={page === 'gallery'} onClose={() => handleNavigate('home')} />
       </div>
     </div>
   )

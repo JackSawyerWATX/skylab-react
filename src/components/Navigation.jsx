@@ -21,9 +21,9 @@ export default function Navigation({ onNavigate, onScreensaver, screensaverButto
         </div>
       </a>
       <ul className="nav-links">
-        <li><button aria-current={currentPage === 'mission' ? 'page' : undefined} onClick={() => onNavigate('mission')}>Mission</button></li>
-        <li><button aria-current={currentPage === 'timeline' ? 'page' : undefined} onClick={() => onNavigate('timeline')}>Timeline</button></li>
-        <li><button aria-current={currentPage === 'gallery' ? 'page' : undefined} onClick={() => onNavigate('gallery')}>Gallery</button></li>
+        <li><a href="/mission/" aria-current={currentPage === 'mission' ? 'page' : undefined} onClick={(event) => { if (!event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey) { event.preventDefault(); onNavigate('mission') } }}>Mission</a></li>
+        <li><a href="/timeline/" aria-current={currentPage === 'timeline' ? 'page' : undefined} onClick={(event) => { if (!event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey) { event.preventDefault(); onNavigate('timeline') } }}>Timeline</a></li>
+        <li><a href="/gallery/" aria-current={currentPage === 'gallery' ? 'page' : undefined} onClick={(event) => { if (!event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey) { event.preventDefault(); onNavigate('gallery') } }}>Gallery</a></li>
       </ul>
       <button ref={screensaverButtonRef} className="screensaver-button" onClick={onScreensaver}>Fullscreen <span aria-hidden="true">&#x26F6;</span></button>
       {screensaverError && <p className="screensaver-error" role="alert">{screensaverError}</p>}
