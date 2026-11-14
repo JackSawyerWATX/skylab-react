@@ -2,17 +2,33 @@
 
 This folder contains a React + Vite scaffold for the Skylab visualization project.
 
-## Quick start
+## Build Commands
 
-Install dependencies and run the dev server:
-
+### Development
 ```powershell
-cd skylab-react
+# Install dependencies
 npm install
+
+# Start development server
 npm run dev
 ```
+Open `http://localhost:3000` in your browser.
 
-Open `http://localhost:5173` (Vite default) in your browser.
+### Production
+```powershell
+# Build for production
+npm run build
+
+# Preview production build locally
+npm run preview
+```
+
+## Quick Start
+
+1. Clone the repository and navigate to the project directory
+2. Install dependencies: `npm install`
+3. Start the development server: `npm run dev`
+4. Open your browser to `http://localhost:3000`
 
 ## What's included
 

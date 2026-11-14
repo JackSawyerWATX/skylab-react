@@ -3,9 +3,12 @@ import React from 'react'
 export default function Mission({ active, onClose }){
   return (
     <section className={`mission-info section-page ${active ? 'active' : ''}`} id="mission">
-      <button className="close-btn" onClick={onClose}>&times;</button>
+      <button className="close-btn" aria-label="Return to orbital view" onClick={onClose}>&times;</button>
       <div className="container">
-        <h2>The Skylab Mission</h2>
+        <header className="mission-header">
+          <img src="/images/skylab-program-patch.png" alt="" className="mission-header-patch" />
+          <h2>The Skylab Mission</h2>
+        </header>
         
         {/* Mission Overview */}
         <div className="mission-overview">
@@ -44,7 +47,7 @@ export default function Mission({ active, onClose }){
           <h3>Scientific Objectives</h3>
           <div className="purpose-grid">
             <div className="purpose-card">
-              <h4>🔬 Medical Research</h4>
+              <h4>Medical Research</h4>
               <p><strong>Purpose:</strong> Study effects of long-duration spaceflight on human physiology</p>
               <ul>
                 <li>Bone density loss and muscle atrophy</li>
@@ -56,7 +59,7 @@ export default function Mission({ active, onClose }){
             </div>
             
             <div className="purpose-card">
-              <h4>☀️ Solar Astronomy</h4>
+              <h4>Solar Astronomy</h4>
               <p><strong>Purpose:</strong> Observe the Sun without atmospheric interference</p>
               <ul>
                 <li>Solar flare monitoring and prediction</li>
@@ -68,7 +71,7 @@ export default function Mission({ active, onClose }){
             </div>
 
             <div className="purpose-card">
-              <h4>🌍 Earth Observation</h4>
+              <h4>Earth Observation</h4>
               <p><strong>Purpose:</strong> Study Earth's resources, weather, and environmental changes</p>
               <ul>
                 <li>Agricultural crop monitoring</li>
@@ -80,7 +83,7 @@ export default function Mission({ active, onClose }){
             </div>
 
             <div className="purpose-card">
-              <h4>🧪 Materials Science</h4>
+              <h4>Materials Science</h4>
               <p><strong>Purpose:</strong> Utilize microgravity for materials research</p>
               <ul>
                 <li>Crystal growth experiments</li>
@@ -92,7 +95,7 @@ export default function Mission({ active, onClose }){
             </div>
 
             <div className="purpose-card">
-              <h4>🌌 Astronomy</h4>
+              <h4>Astronomy</h4>
               <p><strong>Purpose:</strong> Observe celestial objects without atmospheric distortion</p>
               <ul>
                 <li>Star formation studies</li>
@@ -104,7 +107,7 @@ export default function Mission({ active, onClose }){
             </div>
 
             <div className="purpose-card">
-              <h4>🛠️ Technology Testing</h4>
+              <h4>Technology Testing</h4>
               <p><strong>Purpose:</strong> Test technologies for future space missions</p>
               <ul>
                 <li>Life support system validation</li>

@@ -1,3 +1,18 @@
+@font-face {
+    font-family: 'Nimbus Sans';
+    src: url('/fonts/NimbusSans-Regular.otf') format('opentype');
+    font-weight: 100 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Nimbus Sans';
+    src: url('/fonts/NimbusSans-Bold.otf') format('opentype');
+    font-weight: 600 900;
+    font-style: normal;
+    font-display: swap;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +20,7 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Nimbus Sans', Helvetica, Arial, sans-serif;
     background: #000;
     color: #fff;
     overflow-x: hidden;
@@ -92,7 +107,7 @@ body, html, #root {
 }
 
 .nav-brand h1 {
-    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    font-family: inherit;
     font-size: 2.2rem;
     font-weight: 100;
     color: #4fc3f7;
@@ -1017,4 +1032,235 @@ body, html, #root {
         font-size: 1rem;
         margin: 1.5rem 0 2rem;
     }
+}.orbit-note { margin-top: 1.2rem; color: #a6bdc9; font-size: .75rem; line-height: 1.7; }
+.screensaver-button { display: inline-flex; align-items: center; gap: .7rem; margin-top: 1.25rem; padding: .65rem 0; background: transparent; border: 0; border-bottom: 1px solid #4fc3f766; color: #9cdefc; font: inherit; font-size: .85rem; cursor: pointer; }
+.screensaver-button:hover { color: white; border-color: white; }
+.screensaver-button:focus-visible { outline: 2px solid #4fc3f7; outline-offset: 5px; }
+.screensaver-error { margin-top: .75rem; color: #ffd0af; font-size: .85rem; line-height: 1.5; }
+.app-root:fullscreen { width: 100%; height: 100%; background: #000; }
+.screensaver-active, .screensaver-active #container { height: 100%; overflow: hidden; cursor: none; }
+.screensaver-active .section-page { display: none; }
+/* Keep the navigation links centered independently of the brand width. */
+.navbar .nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    .navbar .nav-links {
+        position: static;
+        transform: none;
+        justify-content: center;
+    }
+}
+.navbar .screensaver-button { margin: 0 0 0 auto; padding: .6rem .8rem; border: 1px solid rgba(79, 195, 247, .45); border-radius: 5px; }
+.navbar .screensaver-error { position: absolute; right: 2rem; top: 100%; max-width: 320px; padding: .75rem; background: #101820; }
+@media (max-width: 600px) {
+    .navbar { display: grid; grid-template-columns: 1fr auto; }
+    .navbar .nav-brand { grid-column: 1; grid-row: 1; }
+    .navbar .screensaver-button { grid-column: 2; grid-row: 1; }
+    .navbar .nav-links { grid-column: 1 / -1; grid-row: 2; }
+}
+.navbar .screensaver-button { border-color: transparent; }
+.navbar .screensaver-button:hover { border-color: rgba(79, 195, 247, .65); }
+
+/* Nimbus Sans is bundled locally; controls inherit the page typeface. */
+button, input, select, textarea { font-family: inherit; }
+.navbar .nav-brand { flex-direction: row; align-items: center; gap: .85rem; }
+.mission-patch { display: block; width: 64px; height: 64px; object-fit: contain; flex-shrink: 0; }
+@media (max-width: 768px) {
+    .mission-patch { width: 48px; height: 48px; }
+    .navbar .nav-brand { gap: .6rem; }
+}
+@media (min-width: 601px) and (max-width: 800px) {
+    .navbar .nav-links { gap: .6rem; }
+    .nav-brand h1 { font-size: 1.5rem; }
+}
+
+/* Match the mission patch's orange, compact, mixed-case wordmark. */
+.nav-brand h1, .hero-title {
+    font-family: 'Nimbus Sans', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: -.065em;
+    color: #ffa313;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    text-shadow: none;
+}
+.nav-brand h1::after { display: none; }
+
+/* Lower lab to meet the descender of the y in the patch-style wordmark. */
+.nav-brand h1 .wordmark-sky, .nav-brand h1 .wordmark-lab,
+.hero-title .wordmark-sky, .hero-title .wordmark-lab {
+    display: inline-block;
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+    margin: 0;
+}
+.nav-brand h1 .wordmark-lab, .hero-title .wordmark-lab {
+    transform: translateY(.21em);
+}
+/* Content pages scroll beneath the persistent navigation. */
+:root { --navbar-height: 112px; }
+.navbar { z-index: 1100; }
+.loading-screen { z-index: 2000; }
+.section-page { top: var(--navbar-height); height: calc(100dvh - var(--navbar-height)); min-height: 0; }
+.nav-links button[aria-current="page"] { color: #4fc3f7; }
+/* Mission: restrained NASA-era publication typography in the site's space palette. */
+#mission {
+    --mission-orange: #ffa313;
+    --mission-rule: rgba(238, 235, 224, .22);
+    background: rgba(3, 7, 10, .95);
+    color: #eeeae0;
+    padding: 3.5rem 0 5rem;
+    backdrop-filter: blur(12px);
+}
+#mission > .container { max-width: 1180px; padding: 0 2.5rem; }
+#mission .mission-header { display: flex; align-items: center; gap: 1.5rem; border-bottom: 3px solid var(--mission-orange); padding: 0 0 1.8rem; margin-bottom: 2.5rem; }
+#mission .mission-header-patch { width: 84px; height: 84px; object-fit: contain; }
+#mission h2 { font-size: clamp(2.2rem, 4.5vw, 4rem); font-weight: 700; letter-spacing: -.045em; line-height: 1.05; text-align: left; color: #eeeae0; margin: 0; }
+#mission .mission-overview { background: none; border: 0; border-radius: 0; padding: 0; margin: 0 0 2.5rem; max-width: 900px; }
+#mission .mission-overview h3 { font-size: 1.7rem; font-weight: 400; letter-spacing: -.02em; color: var(--mission-orange); margin-bottom: 1rem; }
+#mission .mission-overview p { color: #c4c9ca; font-size: 1.05rem; line-height: 1.85; }
+#mission .info-grid { gap: 0; border-top: 1px solid var(--mission-rule); border-bottom: 1px solid var(--mission-rule); }
+#mission .info-card { background: none; border: 0; border-right: 1px solid var(--mission-rule); border-radius: 0; padding: 1.5rem; }
+#mission .info-card:first-child { padding-left: 0; }
+#mission .info-card:last-child { border-right: 0; }
+#mission .info-card h3 { color: var(--mission-orange); text-transform: uppercase; font-size: .72rem; letter-spacing: .14em; font-weight: 700; margin-bottom: .8rem; }
+#mission .info-card p { color: #eeeae0; font-size: 1.3rem; margin-bottom: .5rem; }
+#mission .info-card small { display: block; color: #9da6ab; font-size: .8rem; line-height: 1.6; }
+#mission .mission-section { margin: 4rem 0 0; }
+#mission .mission-section > h3 { text-align: left; color: #eeeae0; font-size: 1.7rem; font-weight: 700; letter-spacing: -.025em; border-bottom: 1px solid var(--mission-rule); padding-bottom: 1rem; margin-bottom: 1.5rem; }
+#mission .purpose-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--mission-rule); border: 1px solid var(--mission-rule); margin: 0; counter-reset: objective; }
+#mission .purpose-card { counter-increment: objective; background: #0b1115; border: 0; border-radius: 0; padding: 1.8rem; transition: background .2s ease; }
+#mission .purpose-card::before { content: '0' counter(objective); position: static; display: block; width: auto; height: auto; background: none; color: var(--mission-orange); font-size: .75rem; font-weight: 700; letter-spacing: .12em; margin-bottom: 1rem; }
+#mission .purpose-card:hover { transform: none; background: #10191e; box-shadow: none; }
+#mission .purpose-card h4 { color: #eeeae0; font-size: 1.25rem; letter-spacing: -.015em; margin-bottom: 1rem; }
+#mission .purpose-card p, #mission .purpose-card li { color: #b7c0c4; font-size: .94rem; line-height: 1.7; }
+#mission .purpose-card p strong { color: #eeeae0; }
+#mission .purpose-card ul { padding-left: 1.1rem; margin: 1rem 0 1.4rem; }
+#mission .purpose-card li::marker { color: var(--mission-orange); }
+#mission .achievement { border: 0; border-left: 2px solid var(--mission-orange); border-radius: 0; background: transparent; padding: .15rem 0 .15rem 1rem; font-size: .85rem; line-height: 1.65; font-weight: 400; color: #e3cc9f; }
+#mission .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin: 0; border-top: 1px solid var(--mission-rule); border-left: 1px solid var(--mission-rule); }
+#mission .stat-card { border: 0; border-right: 1px solid var(--mission-rule); border-bottom: 1px solid var(--mission-rule); border-radius: 0; background: none; text-align: left; padding: 1.8rem; }
+#mission .stat-card:hover { background: rgba(255, 163, 19, .035); transform: none; }
+#mission .stat-number { color: var(--mission-orange); text-shadow: none; font-size: clamp(2.4rem, 4vw, 3.8rem); font-weight: 400; letter-spacing: -.05em; line-height: 1.1; margin-bottom: .65rem; }
+#mission .stat-label { font-size: .7rem; letter-spacing: .1em; color: #b7c0c4; line-height: 1.5; }
+#mission .impact-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; margin: 0; }
+#mission .impact-card { background: none; border: 0; border-radius: 0; padding: 1.2rem 0 0; border-top: 2px solid var(--mission-orange); }
+#mission .impact-card::before { display: none; }
+#mission .impact-card:hover { transform: none; box-shadow: none; }
+#mission .impact-card h4 { color: #eeeae0; font-size: 1.15rem; margin-bottom: 1rem; }
+#mission .impact-card p { color: #b7c0c4; font-size: .94rem; line-height: 1.8; }
+#mission .close-btn { color: #c7ced0; background: #0b1115; border: 1px solid var(--mission-rule); border-radius: 0; width: 36px; height: 36px; font-size: 1.4rem; }
+#mission .close-btn:hover { color: var(--mission-orange); border-color: var(--mission-orange); box-shadow: none; transform: none; }
+@media (max-width: 768px) {
+    #mission { padding-top: 3rem; }
+    #mission > .container { padding: 0 1.5rem; }
+    #mission .mission-header { gap: 1rem; }
+    #mission .mission-header-patch { width: 60px; height: 60px; }
+    #mission .info-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #mission .info-card { padding: 1.2rem; }
+    #mission .info-card:first-child { padding-left: 1.2rem; }
+    #mission .info-card:nth-child(2) { border-right: 0; }
+    #mission .info-card:nth-child(-n+2) { border-bottom: 1px solid var(--mission-rule); }
+    #mission .purpose-grid, #mission .impact-grid { grid-template-columns: 1fr; }
+    #mission .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #mission .stat-card { padding: 1.4rem; }
+    #mission .purpose-card { padding: 1.5rem; }
+}
+/* Timeline follows the Mission page's NASA-era publication styling. */
+#timeline {
+    --timeline-orange: #ffa313;
+    --timeline-rule: rgba(238, 235, 224, .22);
+    background: rgba(3, 7, 10, .95);
+    color: #eeeae0;
+    padding: 3.5rem 0 5rem;
+    backdrop-filter: blur(12px);
+}
+#timeline > .container { max-width: 1180px; padding: 0 2.5rem; }
+#timeline .timeline-header { display: flex; align-items: center; gap: 1.5rem; border-bottom: 3px solid var(--timeline-orange); padding-bottom: 1.8rem; margin-bottom: 2.5rem; }
+#timeline .timeline-header-patch { width: 84px; height: 84px; object-fit: contain; }
+#timeline h2 { font-size: clamp(2.2rem, 4.5vw, 4rem); font-weight: 700; letter-spacing: -.045em; line-height: 1.05; text-align: left; color: #eeeae0; margin: 0; }
+#timeline .timeline { max-width: none; margin: 0; padding: 0; }
+#timeline .timeline::before { left: 190px; width: 1px; transform: none; background: var(--timeline-rule); }
+#timeline .timeline-item, #timeline .timeline-item:nth-child(even) { display: grid; grid-template-columns: 190px minmax(0, 1fr); align-items: start; margin: 0; padding-bottom: 2rem; }
+#timeline .timeline-item:last-child { padding-bottom: 0; }
+#timeline .timeline-date { flex: none; margin: 0; padding: 1.8rem 1.8rem 0 0; background: none; color: var(--timeline-orange); border-radius: 0; box-shadow: none; text-align: left; font-size: .87rem; line-height: 1.5; font-weight: 700; letter-spacing: .02em; }
+#timeline .timeline-date::before, #timeline .timeline-item:nth-child(even) .timeline-date::before { width: 9px; height: 9px; left: auto; right: -5px; top: 2.15rem; transform: none; border: 0; border-radius: 0; background: var(--timeline-orange); box-shadow: none; }
+#timeline .timeline-content { min-width: 0; background: #0b1115; border: 1px solid var(--timeline-rule); border-radius: 0; backdrop-filter: none; padding: 1.8rem; margin: 0 0 0 2rem; }
+#timeline .timeline-content h3 { color: #eeeae0; font-size: 1.5rem; font-weight: 700; letter-spacing: -.025em; border-bottom: 1px solid var(--timeline-rule); padding-bottom: 1rem; margin-bottom: 1rem; }
+#timeline .timeline-content p, #timeline .timeline-content li { color: #b7c0c4; font-size: .94rem; line-height: 1.8; }
+#timeline .timeline-content ul { padding-left: 1.1rem; margin: 1rem 0 0; }
+#timeline .timeline-content li::marker { color: var(--timeline-orange); }
+#timeline .timeline-content li strong, #timeline .timeline-content p strong { color: #eeeae0; font-weight: 700; }
+#timeline .crew-info { border: 0; border-left: 2px solid var(--timeline-orange); border-radius: 0; background: none; padding: .2rem 0 .2rem 1.2rem; margin-top: 1.5rem; }
+#timeline .crew-info h4 { color: var(--timeline-orange); font-size: .8rem; letter-spacing: .06em; margin-bottom: .6rem; }
+#timeline .crew-info ul { margin-top: 0; }
+#timeline .crew-info li { padding: 0; }
+#timeline .crew-info p { font-weight: 400; font-size: .85rem; color: #e3cc9f; margin: 1rem 0 0; }
+#timeline .close-btn { color: #c7ced0; background: #0b1115; border: 1px solid var(--timeline-rule); border-radius: 0; width: 36px; height: 36px; font-size: 1.4rem; }
+#timeline .close-btn:hover { color: var(--timeline-orange); border-color: var(--timeline-orange); box-shadow: none; transform: none; }
+@media (max-width: 768px) {
+    #timeline { padding-top: 3rem; }
+    #timeline > .container { padding: 0 1.5rem; }
+    #timeline .timeline-header { gap: 1rem; }
+    #timeline .timeline-header-patch { width: 60px; height: 60px; }
+    #timeline .timeline::before { left: 4px; }
+    #timeline .timeline-item, #timeline .timeline-item:nth-child(even) { grid-template-columns: minmax(0, 1fr); padding-left: 25px; padding-bottom: 2rem; }
+    #timeline .timeline-date { padding: 0 0 .85rem; margin: 0; }
+    #timeline .timeline-date::before, #timeline .timeline-item:nth-child(even) .timeline-date::before { left: -25px !important; right: auto !important; top: .35rem; }
+    #timeline .timeline-content { margin: 0; padding: 1.4rem; }
+    #timeline .timeline-content h3 { font-size: 1.25rem; }
+}
+/* Gallery: the same NASA-era publication system as Mission and Timeline. */
+#gallery {
+    --gallery-orange: #ffa313;
+    --gallery-rule: rgba(238, 235, 224, .22);
+    background: rgba(3, 7, 10, .95);
+    color: #eeeae0;
+    padding: 3.5rem 0 5rem;
+    backdrop-filter: blur(12px);
+    counter-reset: gallery-section;
+}
+#gallery > .container { max-width: 1180px; padding: 0 2.5rem; }
+#gallery .gallery-header { display: flex; align-items: center; gap: 1.5rem; border-bottom: 3px solid var(--gallery-orange); padding-bottom: 1.8rem; margin-bottom: 2rem; }
+#gallery .gallery-header-patch { width: 84px; height: 84px; object-fit: contain; }
+#gallery h2 { font-size: clamp(2.2rem, 4.5vw, 4rem); font-weight: 700; letter-spacing: -.045em; line-height: 1.05; text-align: left; color: #eeeae0; margin: 0; }
+#gallery .gallery-intro { color: #c4c9ca; font-size: 1.05rem; line-height: 1.85; font-style: normal; text-align: left; margin: 0 0 3rem; }
+#gallery .gallery-category { counter-increment: gallery-section; background: none; border: 0; border-radius: 0; padding: 0; margin: 3.5rem 0 0; }
+#gallery .gallery-category h3 { display: flex; align-items: baseline; gap: 1rem; text-align: left; color: #eeeae0; font-size: 1.5rem; font-weight: 700; letter-spacing: -.025em; border-bottom: 1px solid var(--gallery-rule); padding-bottom: 1rem; margin-bottom: 1.5rem; line-height: 1.4; }
+#gallery .gallery-category h3::before { content: counter(gallery-section, decimal-leading-zero); color: var(--gallery-orange); font-size: .75rem; letter-spacing: .12em; flex-shrink: 0; }
+#gallery .photo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; margin: 0; }
+#gallery .photo-item { background: #0b1115; border: 1px solid var(--gallery-rule); border-radius: 0; padding: 0; overflow: hidden; transition: border-color .2s ease; }
+#gallery .photo-item::before { display: none; }
+#gallery .photo-item:hover { transform: none; background: #0b1115; border-color: var(--gallery-orange); box-shadow: none; }
+#gallery .photo-placeholder { width: 100%; height: auto; aspect-ratio: 4 / 3; margin: 0; border: 0; border-radius: 0; background: #020405; backdrop-filter: none; }
+#gallery .gallery-image { width: 100%; height: 100%; object-fit: contain; border-radius: 0; display: block; }
+#gallery .photo-caption { padding: 1.3rem; border-top: 1px solid var(--gallery-rule); }
+#gallery .photo-caption h4 { color: #eeeae0; font-size: 1.05rem; font-weight: 700; letter-spacing: -.015em; line-height: 1.4; margin-bottom: .65rem; }
+#gallery .photo-caption p { color: #b7c0c4; font-size: .88rem; line-height: 1.75; }
+#gallery .photo-icon { color: var(--gallery-orange); }
+#gallery .close-btn { color: #c7ced0; background: #0b1115; border: 1px solid var(--gallery-rule); border-radius: 0; width: 36px; height: 36px; font-size: 1.4rem; }
+#gallery .close-btn:hover { color: var(--gallery-orange); border-color: var(--gallery-orange); box-shadow: none; transform: none; }
+@media (max-width: 1000px) {
+    #gallery .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 768px) {
+    #gallery { padding-top: 3rem; }
+    #gallery > .container { padding: 0 1.5rem; }
+    #gallery .gallery-header { gap: 1rem; }
+    #gallery .gallery-header-patch { width: 60px; height: 60px; }
+    #gallery .gallery-category h3 { font-size: 1.25rem; }
+}
+@media (max-width: 540px) {
+    #gallery .photo-grid { grid-template-columns: minmax(0, 1fr); }
+}
+.navbar a.nav-brand { text-decoration: none; color: inherit; cursor: pointer; }
+.navbar a.nav-brand:focus-visible { outline: 2px solid #ffa313; outline-offset: 5px; }

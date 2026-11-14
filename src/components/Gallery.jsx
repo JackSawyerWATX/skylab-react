@@ -40,7 +40,7 @@ function CategorySection({ title, photos }) {
 export default function Gallery({ active, onClose }) {
   const categories = [
     {
-      title: "🏗️ Design & Development (1969-1973)",
+      title: "Design & Development (1969-1973)",
       photos: [
         { imageSrc: "/images/design-development/concept-sketches.jpg", fallbackIcon: "📐", title: "Initial Skylab Concept", caption: "Early NASA sketches showing the orbital workshop design concept using a converted Saturn S-IVB stage." },
         { imageSrc: "/images/design-development/workshop-assembly.jpg", fallbackIcon: "🔧", title: "Workshop Assembly", caption: "Technicians working on the orbital workshop module at McDonnell Douglas facilities in 1971." },
@@ -51,7 +51,7 @@ export default function Gallery({ active, onClose }) {
       ]
     },
     {
-      title: "🚀 Launch Operations (May 1973)",
+      title: "Launch Operations (May 1973)",
       photos: [
         { imageSrc: "/images/launch-operations/saturn-v-pad.jpg", fallbackIcon: "🌅", title: "Saturn V on Pad 39A", caption: "The final Saturn V rocket carrying Skylab 1 stands ready for launch at Kennedy Space Center." },
         { imageSrc: "/images/launch-operations/liftoff.jpg", fallbackIcon: "🔥", title: "Liftoff - May 14, 1973", caption: "Saturn V launches Skylab into orbit, marking the beginning of America's space station era." },
@@ -62,7 +62,7 @@ export default function Gallery({ active, onClose }) {
       ]
     },
     {
-      title: "👨‍🚀 Crew Operations & Daily Life",
+      title: "Crew Operations & Daily Life",
       photos: [
         { imageSrc: "/images/crew-operations/crew-launch.jpg", fallbackIcon: "�", title: "Skylab 2 Crew Launch", caption: "Conrad, Kerwin, and Weitz launch aboard Apollo Command Service Module to repair and activate Skylab." },
         { imageSrc: "/images/crew-operations/spacewalk-repair.jpg", fallbackIcon: "🔧", title: "First Spacewalk Repair", caption: "Pete Conrad and Paul Weitz perform the dramatic solar wing deployment spacewalk." },
@@ -73,7 +73,7 @@ export default function Gallery({ active, onClose }) {
       ]
     },
     {
-      title: "🔬 Scientific Experiments & Research",
+      title: "Scientific Experiments & Research",
       photos: [
         { imageSrc: "/images/experiments/solar-observatory.jpg", fallbackIcon: "☀️", title: "Solar Observatory Operations", caption: "Astronaut operating the Apollo Telescope Mount controls to study solar activity." },
         { imageSrc: "/images/experiments/solar-flare.jpg", fallbackIcon: "🔥", title: "Solar Flare Photography", caption: "Spectacular images of solar flares captured by Skylab's specialized solar instruments." },
@@ -84,7 +84,7 @@ export default function Gallery({ active, onClose }) {
       ]
     },
     {
-      title: "📅 Mission Progression",
+      title: "Mission Progression",
       photos: [
         { imageSrc: "/images/mission-progression/skylab-2-crew.jpg", fallbackIcon: "🥇", title: "Skylab 2 Crew", caption: "Conrad, Kerwin, and Weitz - the first crew to inhabit America's space station (28 days)." },
         { imageSrc: "/images/mission-progression/skylab-3-crew.jpg", fallbackIcon: "🥈", title: "Skylab 3 Crew", caption: "Bean, Garriott, and Lousma during their record-breaking 59-day mission." },
@@ -95,7 +95,7 @@ export default function Gallery({ active, onClose }) {
       ]
     },
     {
-      title: "🏁 Final Operations & Departure",
+      title: "Final Operations & Departure",
       photos: [
         { imageSrc: "/images/final-operations/final-spacewalk.jpg", fallbackIcon: "📋", title: "Final Experiments", caption: "Edward G. Gibson took the final spacewalk from Skylab on February 3, 1974." },
         { imageSrc: "/images/final-operations/deactivation.jpg", fallbackIcon: "🧹", title: "Station Deactivation", caption: "View of the space station mere moments after Crew 4 departed Skylab." },
@@ -106,7 +106,7 @@ export default function Gallery({ active, onClose }) {
       ]
     },
     {
-      title: "🔥 Reentry & Debris Recovery",
+      title: "Reentry & Debris Recovery",
       photos: [
         { imageSrc: "/images/reentry-debris/debris-map.jpg", fallbackIcon: "🗺️", title: "Debris Field Map", caption: "Map showing where Skylab debris fell across Western Australia near Esperance." },
         { imageSrc: "/images/reentry-debris/oxygen-tank.jpg", fallbackIcon: "⚙️", title: "Recovered Oxygen Tank", caption: "One of the large oxygen tanks found intact in the Australian desert." },
@@ -114,7 +114,7 @@ export default function Gallery({ active, onClose }) {
       ]
     },
     {
-      title: "🏆 Legacy & Impact",
+      title: "Legacy & Impact",
       photos: [
         { imageSrc: "/images/legacy/space-shuttle.jpg", fallbackIcon: "🛸", title: "Space Shuttle Era", caption: "Skylab's lessons directly influenced Space Shuttle and ISS design concepts." },
         { imageSrc: "/images/legacy/iss.jpg", fallbackIcon: "🌐", title: "International Space Station", caption: "The ISS using life support systems and operational procedures pioneered by Skylab." },
@@ -125,9 +125,12 @@ export default function Gallery({ active, onClose }) {
 
   return (
     <section className={`gallery-section section-page ${active ? 'active' : ''}`} id="gallery">
-      <button className="close-btn" onClick={onClose}>&times;</button>
+      <button className="close-btn" aria-label="Return to orbital view" onClick={onClose}>&times;</button>
       <div className="container">
-        <h2>Skylab Photo Gallery</h2>
+        <header className="gallery-header">
+          <img src="/images/skylab-program-patch.png" alt="" className="gallery-header-patch" />
+          <h2>Skylab Photo Gallery</h2>
+        </header>
         <p className="gallery-intro">A visual journey through America's first space station - from conception to conclusion</p>
 
         {categories.map((category, idx) => (
