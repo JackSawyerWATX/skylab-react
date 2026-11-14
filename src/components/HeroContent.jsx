@@ -4,7 +4,7 @@ export default function HeroContent({ onToggleFocus, onToggleAnimation, isPaused
   return (
     <div className="hero-content">
       <div className="hero-text">
-        <h1 className="hero-title">SKYLAB</h1>
+        <h1 className="hero-title" aria-label="Skylab"><span className="wordmark-sky" aria-hidden="true">Sky</span><span className="wordmark-lab" aria-hidden="true">lab</span></h1>
         <h2 className="hero-subtitle">America's First Space Station</h2>
         <p className="hero-description">
           Experience the pioneering spirit of Skylab, NASA's first space station that orbited Earth from 1973 to 1979, 
