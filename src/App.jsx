@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useCallback } from 'react'
 import LoadingScreen from './components/LoadingScreen'
 import Navigation from './components/Navigation'
 import ThreeScene from './components/ThreeScene'
@@ -11,6 +11,8 @@ import { createAmbientAudio } from './ambientAudio'
 export default function App(){
   const [page, setPage] = useState('home') // home, mission, timeline, gallery
   const [isLoading, setIsLoading] = useState(true)
+  const [isSceneReady, setIsSceneReady] = useState(false)
+  const handleSceneReady = useCallback(() => setIsSceneReady(true), [])
   const [isPaused, setIsPaused] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
   const threeSceneRef = useRef()
@@ -65,9 +67,7 @@ export default function App(){
     window.scrollTo(0,0)
   }
 
-  function handleLoadingComplete() {
-    setIsLoading(false)
-  }
+  const handleLoadingComplete = useCallback(() => setIsLoading(false), [])
 
   function handleToggleFocus() {
     const newFocusState = !isFocused
@@ -86,13 +86,13 @@ export default function App(){
 
   return (
     <div className={`app-root ${isScreensaver ? 'screensaver-active' : ''}`} ref={fullscreenRootRef}>
-      {isLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
+      {isLoading && <LoadingScreen isReady={isSceneReady} onLoadingComplete={handleLoadingComplete} />}
       
       <div id="container">
         {!isScreensaver && <Navigation currentPage={page} onNavigate={handleNavigate} onScreensaver={handleScreensaver} screensaverButtonRef={screensaverButtonRef} screensaverError={screensaverError} />}
         
         {/* Full-screen Three.js canvas */}
-        <ThreeScene ref={threeSceneRef} isPaused={isScreensaver ? false : isPaused} isScreensaver={isScreensaver} />
+        <ThreeScene onReady={handleSceneReady} ref={threeSceneRef} isPaused={isScreensaver ? false : isPaused} isScreensaver={isScreensaver} />
         
         {/* Hero content overlay */}
         {page === 'home' && !isLoading && !isScreensaver && (

@@ -4,7 +4,7 @@ import createSkylab from './createSkylab'
 import createStarMap from './createStarMap'
 import { orbitPosition, earthRotation, TIME_SCALE, TRUE_STATION_SCALE, METERS_TO_SCENE } from './skylabOrbit.mjs'
 
-const ThreeScene = forwardRef(({ isPaused, isScreensaver }, ref) => {
+const ThreeScene = forwardRef(({ isPaused, isScreensaver, onReady }, ref) => {
   const containerRef = useRef(null)
   const reqRef = useRef()
   const sceneRef = useRef()
@@ -108,7 +108,9 @@ const ThreeScene = forwardRef(({ isPaused, isScreensaver }, ref) => {
 
     // Local Earth maps from the official Three.js planet example.
     const earthGroup = new THREE.Group()
-    const textureLoader = new THREE.TextureLoader()
+    const loadingManager = new THREE.LoadingManager()
+    loadingManager.onLoad = () => onReady?.()
+    const textureLoader = new THREE.TextureLoader(loadingManager)
     const loadMap = (name, color = false) => {
       const texture = textureLoader.load(`/textures/${name}`)
       texture.anisotropy = Math.min(16, renderer.capabilities.getMaxAnisotropy())
@@ -279,6 +281,7 @@ const ThreeScene = forwardRef(({ isPaused, isScreensaver }, ref) => {
     animate()
 
     return () => {
+      loadingManager.onLoad = () => {}
       disposed = true
       detailedTexture?.dispose()
       overviewTexture.dispose()

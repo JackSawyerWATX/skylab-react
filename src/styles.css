@@ -1264,3 +1264,20 @@ button, input, select, textarea { font-family: inherit; }
 }
 .navbar a.nav-brand { text-decoration: none; color: inherit; cursor: pointer; }
 .navbar a.nav-brand:focus-visible { outline: 2px solid #ffa313; outline-offset: 5px; }
+/* Loading screen shares the patch, wordmark and publication palette. */
+.loading-screen { background: #03070a; transition: opacity .6s ease; z-index: 2000; }
+.loading-content { width: min(360px, calc(100vw - 3rem)); text-align: center; }
+.loading-patch { width: 120px; height: 120px; object-fit: contain; display: block; margin: 0 auto 1.8rem; }
+.loading-content .loading-wordmark { color: #ffa313; font-size: 4rem; font-weight: 700; letter-spacing: -.065em; line-height: 1; margin: 0 0 1.4rem; }
+.loading-wordmark .wordmark-sky, .loading-wordmark .wordmark-lab { display: inline-block; }
+.loading-wordmark .wordmark-lab { transform: translateY(.21em); }
+.loading-subtitle { color: #c4c9ca; font-size: .95rem; margin-bottom: 2.5rem; }
+.loading-bar { width: 100%; height: 2px; background: #eeeae026; border-radius: 0; }
+.loading-progress { width: 100%; border-radius: 0; background: #ffa313; transform: scaleX(0); transform-origin: left; animation: orbital-loading 5s linear forwards; }
+.loading-progress.is-ready { animation: none; transform: scaleX(1); }
+.loading-caption { display: flex; justify-content: space-between; gap: 1rem; margin-top: .9rem; color: #99a7ad; font-size: .65rem; text-transform: uppercase; letter-spacing: .1em; }
+@keyframes orbital-loading { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) {
+    .loading-progress { animation: none; transform: scaleX(1); opacity: .65; }
+    .loading-screen { transition: none; }
+}
