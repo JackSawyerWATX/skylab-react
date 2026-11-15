@@ -22,6 +22,23 @@ export default function App(){
   const screensaverButtonRef = useRef()
   const [isScreensaver, setIsScreensaver] = useState(false)
   const [screensaverError, setScreensaverError] = useState('')
+  const [showFullscreenHint, setShowFullscreenHint] = useState(false)
+
+  useEffect(() => {
+    setShowFullscreenHint(false)
+    if (!isScreensaver) return
+    let hideTimer
+    const onMouseMove = () => {
+      setShowFullscreenHint(true)
+      clearTimeout(hideTimer)
+      hideTimer = setTimeout(() => setShowFullscreenHint(false), 2500)
+    }
+    document.addEventListener('mousemove', onMouseMove, { passive: true })
+    return () => {
+      document.removeEventListener('mousemove', onMouseMove)
+      clearTimeout(hideTimer)
+    }
+  }, [isScreensaver])
 
   useEffect(() => {
     const exit = () => {
@@ -97,6 +114,7 @@ export default function App(){
     <div className={`app-root ${isScreensaver ? 'screensaver-active' : ''}`} ref={fullscreenRootRef}>
       {isLoading && <LoadingScreen isReady={isSceneReady} onLoadingComplete={handleLoadingComplete} />}
       
+      {isScreensaver && <div className={`fullscreen-exit-hint ${showFullscreenHint ? 'is-visible' : ''}`} aria-hidden="true">Press ESC to Exit Fullscreen</div>}
       <div id="container">
         {!isScreensaver && <Navigation currentPage={page} onNavigate={handleNavigate} onScreensaver={handleScreensaver} screensaverButtonRef={screensaverButtonRef} screensaverError={screensaverError} />}
         
